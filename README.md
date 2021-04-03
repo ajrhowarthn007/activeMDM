@@ -1,54 +1,27 @@
-activeMDM
-=========
-
-Open source MDM (Mobile Device Management) server for iOS and OSX (initially, Android _eventually_)
-
-The initial goals of this project are to create a fully-functional MDM server for iOS and OSX with 3 major components
-
-1. Administration-web tool to manage MDM payloads
-1. Server job to poll a queue of devices that need to be told to refresh data and send messages via APNS to said devices
-1. Web service to respond to devices which are either enrolling or responding to an APNS message
-
-At this point the goals for v0.1 are:
-
-1. iOS and OSX support
-1. Device enrolment
-1. APNS interaction
-1. Device lock working on a device
-
-Currently, the goals for v0.1 do *not* include: 
-
-1. Android support - we're not anti-Android, just taking baby-steps at this point
-1. Windows Phone support (see above)
-1. _insert name of platform here_ support (again, see above)
-1. User, enterprise or user groups management - basically v0.1 will be a 'one shot' server: if you enrol onto the activeMDM instance, then you get _everything_ from the server
-
-So we're aiming fairly low for v0.1. The list of functionality for v0.2 has not yet been written and we're not going to touch that until we're deep into v0.1: let's say the first two goals are complete and at least 50% of the third goal is done. 
-
-Installation
+Working Copy
 ============
 
-We need: 
+Welcome to Working Copy, a full-featured Git client for iOS. 
 
-* Apache HTTPD server: whatever is the current latest and greatest
-* PHP 5.4+
-* Slim framework
-* Twig templates
-* MongoDB 2.4+
+Git is a powerful system and can take some time to master. The same is true for this application and even though you will not need 
+to work with the command-line, some understanding of Git is needed. If you are not confident with the core concepts of Git you should 
+read the first few chapters of [Pro Git](http://git-scm.com/book) by Scott Chacon. 
 
-ActiveMDM uses the CFPropertyList project (https://github.com/rodneyrehm/CFPropertyList), however you will have to modify the call to saveXML call in the toXML function in CFPropertyList.php (line 418 ish) to 
+My goal has been to make a interface that is suitable for touch devices, works well with other applications on your device and 
+can take part in a work-flow where much development is done on traditional computers. If Working Copy turns out to allow more 
+people to use Git, this is a positive side-effect, but the primarily focus is on letting existing Git users work on iOS.
 
-`$doc->saveXML($doc, LIBXML_NOEMPTYTAG)`
+I have made things a little more convenient for [GitHub](https://github.com), [BitBucket](https://bitbucket.org), [GitLab](https://gitlab.com) and [Gogs](https://gogs.io) users but you can use any modern Git hosting service or your own Git server.
 
-Otherwise you'll end up with empty entities that aren't closed and that will cause the MDM payloads to fail on the device. We've forked CFPropertyList and made the change here: https://github.com/abstractec/CFPropertyList - if you install using composer (and you probably should), our forked version will be included in the project.
+You will be able to access files inside Working Copy from other apps if they support the iCloud picker introduced in iOS 8, 
+but [many other](https://workingcopyapp.com/manual.html#extending-ios) integration points are supported as well. 
 
-Within your mongoDB setup, you will need to add the following collections:
+If you like Working Copy and want it to prosper and improve, you should tell people about it. Praise it in a App Store review,
+on Twitter or preferably over lunch with friends and co-workers. 
+Development is self-financed and when Working Copy is bringing in enough revenue to pay my bills, I can work full time at
+full speed. Unfortunately I often need to spend time doing contracting work slowing down Working Copy development.
 
-* config
-* device
-* queue
-* status
+If you have questions you can check out the [Users’ guide](https://workingcopyapp.com/manual.html) and if the app is
+misbehaving or missing critical features write me at [anders@workingcopyapp.com](mailto:anders@workingcopyapp.com).
 
-using db.createCollection("config") and so on from the mongoDB console
-
-
+Anders Borum
