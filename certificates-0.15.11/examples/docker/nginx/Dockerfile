@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM nginx:1.27.2-alpine3.20
 
 RUN apk add inotify-tools
 RUN mkdir -p /var/local/step
